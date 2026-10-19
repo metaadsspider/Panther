@@ -1,11 +1,289 @@
-
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1763992541572584');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1763992541572584&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHASHWAT™</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
+    <style>
+        :root {
+            --bg1: #0b1a26;
+            --bg2: #04070b;
+            --accent: #22c55e;
+            --accent2: #16a34a;
+            --gold: #facc15;
+            --tg: #229ed9;
+            --card: rgba(18, 26, 36, 0.72);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
+
+        body {
+            background: radial-gradient(ellipse at top, var(--bg1) 0%, var(--bg2) 75%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Ambient glowing orbs */
+        .orb { position: fixed; border-radius: 50%; filter: blur(80px); opacity: .35; z-index: 0; animation: float 9s ease-in-out infinite alternate; pointer-events: none; }
+        .orb.one { width: 260px; height: 260px; background: #22c55e; top: -60px; left: -80px; }
+        .orb.two { width: 300px; height: 300px; background: #229ed9; bottom: -100px; right: -90px; animation-delay: -4s; }
+        @keyframes float { to { transform: translate(30px, 40px) scale(1.15); } }
+
+        /* Card */
+        .card {
+            position: relative;
+            z-index: 1;
+            background: var(--card);
+            border-radius: 28px;
+            padding: 34px 22px 26px;
+            width: 100%;
+            max-width: 390px;
+            text-align: center;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 20px 60px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.08);
+            animation: popIn .7s cubic-bezier(.2,.9,.3,1.2) both;
+        }
+        /* Animated gradient border */
+        .card::before {
+            content: ""; position: absolute; inset: 0; border-radius: 28px; padding: 1.5px;
+            background: conic-gradient(from var(--ang, 0deg), transparent 0 60%, var(--accent) 80%, var(--tg) 90%, transparent 100%);
+            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor; mask-composite: exclude;
+            animation: spin 4s linear infinite;
+            pointer-events: none;
+        }
+        @property --ang { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+        @keyframes spin { to { --ang: 360deg; } }
+        @keyframes popIn { from { opacity: 0; transform: translateY(30px) scale(.94); } to { opacity: 1; transform: none; } }
+
+        /* Logo badge */
+        .logo {
+            width: 74px; height: 74px; margin: 0 auto 16px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #1f3a2c, #0d1f17);
+            border: 2px solid rgba(34,197,94,.6);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 32px; color: var(--accent);
+            box-shadow: 0 0 25px rgba(34,197,94,.45);
+            animation: pulse 2.2s ease-in-out infinite;
+        }
+        @keyframes pulse { 50% { box-shadow: 0 0 40px rgba(34,197,94,.8); transform: scale(1.05); } }
+
+        .main-title {
+            font-size: 28px; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase;
+            background: linear-gradient(90deg, #fff, #bbf7d0, #fff);
+            background-size: 200% auto;
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
+            margin-bottom: 14px;
+        }
+        @keyframes shine { to { background-position: 200% center; } }
+
+        .yellow-banner {
+            background: linear-gradient(90deg, #facc15, #eab308);
+            color: #111; font-weight: 700; font-size: 12.5px;
+            padding: 9px 12px; border-radius: 10px; margin-bottom: 22px;
+            display: block; line-height: 1.4;
+            box-shadow: 0 4px 18px rgba(250,204,21,.3);
+        }
+
+        /* Live badge */
+        .live {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 12px; font-weight: 600; color: #cbd5e1;
+            background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08);
+            padding: 6px 14px; border-radius: 999px; margin-bottom: 18px;
+        }
+        .live i { width: 8px; height: 8px; border-radius: 50%; background: #ef4444; animation: blink 1s infinite; }
+        @keyframes blink { 50% { opacity: .2; } }
+
+        /* Redirect countdown ring */
+        .ring-wrap { position: relative; width: 92px; height: 92px; margin: 0 auto 8px; }
+        .ring-wrap svg { transform: rotate(-90deg); width: 100%; height: 100%; }
+        .ring-bg { fill: none; stroke: rgba(255,255,255,.1); stroke-width: 7; }
+        .ring-fg { fill: none; stroke: var(--accent); stroke-width: 7; stroke-linecap: round; stroke-dasharray: 264; stroke-dashoffset: 0; transition: stroke-dashoffset 1s linear; filter: drop-shadow(0 0 6px rgba(34,197,94,.8)); }
+        .ring-num { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 800; }
+        .redirect-text { font-size: 13px; color: #94a3b8; font-weight: 600; margin-bottom: 20px; }
+        .redirect-text b { color: var(--accent); }
+
+        /* CTA Button */
+        .btn-container {
+            position: relative; overflow: hidden;
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            background: linear-gradient(135deg, #229ed9, #1478b0);
+            border-radius: 18px; padding: 18px 16px;
+            text-decoration: none; color: #fff; cursor: pointer;
+            box-shadow: 0 8px 30px rgba(34,158,217,.5), 0 0 0 3px rgba(255,255,255,.08);
+            margin-bottom: 22px;
+            animation: bump 1.4s ease-in-out infinite alternate;
+            transition: transform .2s;
+        }
+        .btn-container:active { transform: scale(.97); }
+        .btn-container::after {
+            content: ""; position: absolute; top: 0; left: -80%; width: 50%; height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,.45), transparent);
+            transform: skewX(-20deg); animation: sweep 2.4s infinite;
+        }
+        @keyframes sweep { to { left: 140%; } }
+        @keyframes bump { to { transform: scale(1.04); } }
+
+        .moving-text { font-size: 15px; font-weight: 800; text-transform: uppercase; line-height: 1.25; letter-spacing: .5px; text-align: left; }
+        .tg-icon {
+            background: #fff; color: var(--tg);
+            width: 38px; height: 38px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; flex-shrink: 0;
+        }
+
+        /* Trust chips */
+        .chips { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+        .chip { font-size: 11px; font-weight: 600; color: #cbd5e1; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); padding: 6px 11px; border-radius: 999px; }
+        .chip i { color: var(--accent); margin-right: 5px; }
+
+        .divider { border-top: 1px dashed rgba(255,255,255,.14); margin-bottom: 16px; }
+
+        .disclaimer { font-size: 10px; color: #64748b; line-height: 1.55; margin-bottom: 16px; }
+
+        .ads-by { font-size: 12.5px; color: #fff; font-weight: 600; }
+        .ads-by span { color: #3b82f6; }
+
+        .logo {
+    width: 84px;
+    height: 84px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    overflow: hidden;
+    padding: 0;
+    border: 2px solid rgba(34,197,94,.6);
+    box-shadow: 0 0 25px rgba(34,197,94,.45);
+}
+.logo img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    border-radius: 50%;
+}
+    </style>
+</head>
 <body>
 
-null
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+
+    <div class="card">
+        <div class="logo"><img src="C:\Users\ffyas\Downloads\photo_2026-07-31_02-23-05.jpg" alt="SHASHWAT"></div>
+
+        <h1 class="main-title">Vibranium Bhai</h1>
+
+        <div class="yellow-banner">
+            Accurate analysis • Match Update • Right Pred!ction
+        </div>
+
+        <div class="live"><i></i> LIVE UPDATES ACTIVE</div>
+
+        <!-- Auto redirect countdown -->
+        <div class="ring-wrap">
+            <svg viewBox="0 0 100 100">
+                <circle class="ring-bg" cx="50" cy="50" r="42"></circle>
+                <circle class="ring-fg" id="ringFg" cx="50" cy="50" r="42"></circle>
+            </svg>
+            <div class="ring-num" id="countdown">3</div>
+        </div>
+        <div class="redirect-text">Redirecting to Telegram in <b id="secText">3</b>s…</div>
+
+        <a href="javascript:void(0)" class="btn-container" onclick="goTelegram()">
+            <div class="moving-text">JOIN TELEGRAM<br>FOR NEW UPDATE</div>
+            <div class="tg-icon"><i class="fa-brands fa-telegram"></i></div>
+        </a>
+
+        <div class="chips">
+            <span class="chip"><i class="fa-solid fa-bolt"></i>Fast Updates</span>
+            <span class="chip"><i class="fa-solid fa-chart-line"></i>Analysis</span>
+            <span class="chip"><i class="fa-solid fa-shield-halved"></i>Free</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <p class="disclaimer">
+            Disclaimer: This channel shares cricket updates, analysis, and general information for fans. It does not promote betting or gambling. No outcomes are guaranteed. Please verify independently and act responsibly.
+        </p>
+
+        <div class="ads-by">Ads by <span>Spidy Ads Agency</span></div>
+    </div>
+
+    <script>
+        const TG_LINK = "https://tg-join-tracker.lovable.app/go/mahiking";
+        const REDIRECT_SECONDS = 3;
+
+        let timeLeft = REDIRECT_SECONDS;
+        let redirected = false;
+
+        const countdownEl = document.getElementById('countdown');
+        const secText = document.getElementById('secText');
+        const ring = document.getElementById('ringFg');
+        const CIRC = 264;
+
+        function render() {
+            countdownEl.textContent = timeLeft;
+            secText.textContent = timeLeft;
+            ring.style.strokeDashoffset = CIRC * (1 - timeLeft / REDIRECT_SECONDS);
+        }
+        render();
+
+        function goTelegram() {
+            if (redirected) return;
+            redirected = true;
+            clearInterval(timer);
+
+            // Fire Meta Pixel event first
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'Subscribe', {value: 0.00, currency: 'INR'});
+            }
+            // Small delay so the pixel request can leave before navigation
+            setTimeout(() => { window.location.href = TG_LINK; }, 350);
+        }
+
+        const timer = setInterval(() => {
+            timeLeft--;
+            if (timeLeft <= 0) {
+                timeLeft = 0;
+                render();
+                goTelegram();
+                return;
+            }
+            render();
+        }, 1000);
+    </script>
 
 </body>
-
 </html>
