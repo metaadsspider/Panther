@@ -124,14 +124,12 @@ src="https://www.facebook.com/tr?id=4070661846571568&ev=PageView&noscript=1"
         .live i { width: 8px; height: 8px; border-radius: 50%; background: #ef4444; animation: blink 1s infinite; }
         @keyframes blink { 50% { opacity: .2; } }
 
-        /* Redirect countdown ring */
-        .ring-wrap { position: relative; width: 92px; height: 92px; margin: 0 auto 8px; }
-        .ring-wrap svg { transform: rotate(-90deg); width: 100%; height: 100%; }
-        .ring-bg { fill: none; stroke: rgba(255,255,255,.1); stroke-width: 7; }
-        .ring-fg { fill: none; stroke: var(--accent); stroke-width: 7; stroke-linecap: round; stroke-dasharray: 264; stroke-dashoffset: 0; transition: stroke-dashoffset 1s linear; filter: drop-shadow(0 0 6px rgba(34,197,94,.8)); }
-        .ring-num { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 800; }
-        .redirect-text { font-size: 13px; color: #94a3b8; font-weight: 600; margin-bottom: 20px; }
-        .redirect-text b { color: var(--accent); }
+        /* 10s timer bar */
+        .timer-box { margin-bottom: 18px; }
+        .timer-label { font-size: 12px; font-weight: 600; letter-spacing: .6px; color: #94a3b8; margin-bottom: 10px; text-transform: uppercase; }
+        .timer-label span { color: var(--accent); font-weight: 800; }
+        .timer-bar { height: 8px; border-radius: 999px; background: rgba(255,255,255,.1); overflow: hidden; }
+        .timer-fill { height: 100%; width: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--accent2), var(--accent)); box-shadow: 0 0 12px rgba(34,197,94,.7); transition: width 1s linear; }
 
         /* CTA Button */
         .btn-container {
@@ -211,15 +209,11 @@ src="https://www.facebook.com/tr?id=4070661846571568&ev=PageView&noscript=1"
 
         <div class="live"><i></i> LIVE UPDATES ACTIVE</div>
 
-        <!-- Auto redirect countdown -->
-        <div class="ring-wrap">
-            <svg viewBox="0 0 100 100">
-                <circle class="ring-bg" cx="50" cy="50" r="42"></circle>
-                <circle class="ring-fg" id="ringFg" cx="50" cy="50" r="42"></circle>
-            </svg>
-            <div class="ring-num" id="countdown">3</div>
+        <!-- 10s timer bar -->
+        <div class="timer-box">
+            <div class="timer-label" id="timerLabel">Free joining ends in <span id="countdown">10s</span></div>
+            <div class="timer-bar"><div class="timer-fill" id="timerFill"></div></div>
         </div>
-        <div class="redirect-text">Redirecting to Telegram in <b id="secText">3</b>s…</div>
 
         <a href="javascript:void(0)" class="btn-container" onclick="goTelegram()">
             <div class="moving-text">JOIN TELEGRAM<br>FOR NEW UPDATE</div>
@@ -243,20 +237,18 @@ src="https://www.facebook.com/tr?id=4070661846571568&ev=PageView&noscript=1"
 
     <script>
         const TG_LINK = "https://tg-shortener.yashublitzz.workers.dev/s/tyws9x";
-        const REDIRECT_SECONDS = 3;
+        const REDIRECT_SECONDS = 10;
 
         let timeLeft = REDIRECT_SECONDS;
         let redirected = false;
 
         const countdownEl = document.getElementById('countdown');
-        const secText = document.getElementById('secText');
-        const ring = document.getElementById('ringFg');
-        const CIRC = 264;
+        const fillEl = document.getElementById('timerFill');
+        const labelEl = document.getElementById('timerLabel');
 
         function render() {
-            countdownEl.textContent = timeLeft;
-            secText.textContent = timeLeft;
-            ring.style.strokeDashoffset = CIRC * (1 - timeLeft / REDIRECT_SECONDS);
+            countdownEl.textContent = timeLeft + 's';
+            fillEl.style.width = (timeLeft / REDIRECT_SECONDS * 100) + '%';
         }
         render();
 
@@ -278,6 +270,7 @@ src="https://www.facebook.com/tr?id=4070661846571568&ev=PageView&noscript=1"
             if (timeLeft <= 0) {
                 timeLeft = 0;
                 render();
+                labelEl.innerHTML = 'Opening <span>Telegram</span>…';
                 goTelegram();
                 return;
             }
